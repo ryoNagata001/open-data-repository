@@ -13,10 +13,10 @@ type User struct {
 
 
 // mongoのcollection
-var cl = infrastructure.SetCollection(infrastructure.Users.String())
+var user_cl = infrastructure.SetCollection(infrastructure.Users.String())
 
 func InsertNewUser (user User) {
-	dbErr := cl.Insert(user)
+	dbErr := user_cl.Insert(user)
 
 	if dbErr != nil {
 		panic(dbErr) // TODO panic should not be used.
@@ -25,17 +25,17 @@ func InsertNewUser (user User) {
 
 // userのsig確認
 func CheckExistenceOfUser(publicKey string) (int) {
-	count, _ := cl.Find(bson.M{"publicKey": publicKey}).Count()
+	count, _ := user_cl.Find(bson.M{"publicKey": publicKey}).Count()
 	return count
 }
 
 func GetUserByPubKey(publicKey string) (user User) {
-	cl.Find(bson.M{"publicKey": publicKey}).One(&user)
+	user_cl.Find(bson.M{"publicKey": publicKey}).One(&user)
 	return
 }
 
 func GetUserById(id bson.ObjectId) (user User, err error) {
-	err = cl.FindId(id).One(&user)
+	err = user_cl.FindId(id).One(&user)
 	return
 }
 
