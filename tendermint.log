@@ -1,0 +1,23 @@
+I[10126-12-10|23:12:57.537] Version info                                 module=main software=0.27.0 block=8 p2p=5
+I[10126-12-10|23:12:57.537] Software and state have different block protocols module=main software=8 state=7
+I[10126-12-10|23:12:57.547] Starting Node                                module=main impl=Node
+I[10126-12-10|23:12:57.551] Started node                                 module=main nodeInfo="{ProtocolVersion:{P2P:5 Block:7 App:0} ID_:707346fcc23103c66258c42e0eab5b2225d29efd ListenAddr:tcp://0.0.0.0:26656 Network:test-chain-AyVQR5 Version:0.27.0 Channels:4020212223303800 Moniker:nagataryou-no-MacBook-Pro-2.local Other:{TxIndex:on RPCAddress:tcp://0.0.0.0:26657}}"
+E[10126-12-10|23:12:57.552] Couldn't connect to any seeds                module=p2p 
+E[10126-12-10|23:13:27.552] Couldn't connect to any seeds                module=p2p 
+E[10126-12-10|23:13:28.282] Stopping abci.socketClient for error: EOF    module=abci-client connection=query
+E[10126-12-10|23:13:28.282] Stopping abci.socketClient for error: EOF    module=abci-client connection=consensus
+E[10126-12-10|23:13:28.282] Stopping abci.socketClient for error: EOF    module=abci-client connection=mempool
+E[10126-12-10|23:13:57.552] Couldn't connect to any seeds                module=p2p 
+E[10126-12-10|23:14:27.552] Couldn't connect to any seeds                module=p2p 
+E[10126-12-10|23:14:52.553] Group's head may grow without bound          module=consensus wal=/Users/nagataryou/go/src/open-data-repository/data/cs.wal/wal head=/Users/nagataryou/go/src/open-data-repository/data/cs.wal/wal err="open /Users/nagataryou/go/src/open-data-repository/data/cs.wal/wal: no such file or directory"
+panic: open /Users/nagataryou/go/src/open-data-repository/data/cs.wal: no such file or directory
+
+goroutine 84 [running]:
+github.com/tendermint/tendermint/libs/autofile.(*Group).readGroupInfo(0xc0014f6000, 0x0, 0x0, 0x0, 0x0)
+	/Users/nagataryou/go/src/github.com/tendermint/tendermint/libs/autofile/group.go:504 +0x509
+github.com/tendermint/tendermint/libs/autofile.(*Group).checkTotalSizeLimit(0xc0014f6000)
+	/Users/nagataryou/go/src/github.com/tendermint/tendermint/libs/autofile/group.go:247 +0x64
+github.com/tendermint/tendermint/libs/autofile.(*Group).processTicks(0xc0014f6000)
+	/Users/nagataryou/go/src/github.com/tendermint/tendermint/libs/autofile/group.go:218 +0x53
+created by github.com/tendermint/tendermint/libs/autofile.(*Group).OnStart
+	/Users/nagataryou/go/src/github.com/tendermint/tendermint/libs/autofile/group.go:132 +0x66
