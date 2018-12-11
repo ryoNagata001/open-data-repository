@@ -23,8 +23,6 @@ func (collection  Collection) String() string {
 		return "users"
 	case DataSets:
 		return "datasets"
-	case DataResources:
-		return "dataresources"
 	default:
 		return "done."
 	}
