@@ -106,13 +106,16 @@ func (app *JSONStoreApplication) CheckTx(tx []byte) types.ResponseCheckTx {
 	fmt.Println("【CheckTx】:", body)
 
 	// ==== Does the userDao really exist? ======
+	publicKey := strings.ToUpper(util.ByteToHex(pubKeyBytes))
+	// ここでmongoに今のstateでuserが存在しているか確認している
+	count := domain.CheckExistenceOfUser(publicKey)
 	if body["type"] != "createUser" {
-		publicKey := strings.ToUpper(util.ByteToHex(pubKeyBytes))
-
-		// ここでmongoに今のstateでuserが存在しているか確認している
-		count := domain.CheckExistenceOfUser(publicKey)
 
 		if count == 0 {
+			return types.ResponseCheckTx{Code: code.CodeTypeBadData}
+		}
+	} else {
+		if count != 0 {
 			return types.ResponseCheckTx{Code: code.CodeTypeBadData}
 		}
 	}
@@ -158,7 +161,7 @@ func (app *JSONStoreApplication) BeginBlock(req types.RequestBeginBlock) (res ty
 
 func (app *JSONStoreApplication) EndBlock(req types.RequestEndBlock) (res types.ResponseEndBlock) {
 
-	//// TODO Add Validator logic
+	// TODO Add Validator logic
 	//if len(app.state.ValidatorUpdates) != 0 {
 	//	// 新たなValidatorを追加する
 	//	res.ValidatorUpdates = app.state.ValidatorUpdates

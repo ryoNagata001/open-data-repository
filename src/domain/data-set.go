@@ -6,7 +6,7 @@ import (
 	"open-data-repository/src/infrastructure"
 )
 
-type DataSource struct {
+type DataSet struct {
 	ID 					bson.ObjectId 	`bson:"_id" json:"_id"`
 	Title				string			`bson: "title"`
 	Publisher 			string			`bson: "publisher"`
@@ -20,16 +20,16 @@ type DataSource struct {
 	DataResources		[]DataResource	`bson: "data_resources"`		// データリソースの中身
 }
 
-var datasource_cl = infrastructure.SetCollection(infrastructure.DataSets.String())
+var dataset_cl = infrastructure.SetCollection(infrastructure.DataSets.String())
 
 // insert
-func InsertNewDataSet(dataSource DataSource) (dbErr error) {
-	dbErr = datasource_cl.Insert(dataSource)
+func InsertNewDataSet(dataSet DataSet) (dbErr error) {
+	dbErr = dataset_cl.Insert(dataSet)
 	return
 }
 
 // idで取得
-func GetDataSetById(id bson.ObjectId) (dataSource DataSource, err error) {
-	err = datasource_cl.FindId(id).One(&dataSource)
+func GetDataSetById(id bson.ObjectId) (dataSet DataSet, err error) {
+	err = dataset_cl.FindId(id).One(&dataSet)
 	return
 }

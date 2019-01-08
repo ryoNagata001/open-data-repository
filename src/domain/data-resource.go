@@ -11,7 +11,7 @@ type DataResource struct {
 	URL 				string 			`bson: "url"` 					// url
 	Description 		string			`bson: "description"`
 	Format 				string			`bson: "format"`				// 拡張子を設定する(ValueはBASE64で保持する)
-	Value 				[]byte			`bson: "value"`					// dataの中身
+	Value 				string			`bson: "value"`					// dataの中身をbase64にする
 	FileSize			int 			`bson: "file_size"`				// byte
 	LastModifiedDate 	date.Date 		`bson: "last_modified_date"`	// リソースの掲載日を YYYY-MM-DDののフォーマットで記入する
 	License				string			`bson: "licence"`				// 択一選択
@@ -22,6 +22,6 @@ type DataResource struct {
 func AddDataResource (id bson.ObjectId, dataResource DataResource) (errDb error){
 	selector := bson.M{"_id": id}
 	update := bson.M{"$set":bson.M{"data_resources": dataResource}}
-	errDb = datasource_cl.Update(selector, update)
+	errDb = dataset_cl.Update(selector, update)
 	return
 }

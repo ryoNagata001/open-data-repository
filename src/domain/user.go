@@ -15,12 +15,9 @@ type User struct {
 // mongoのcollection
 var user_cl = infrastructure.SetCollection(infrastructure.Users.String())
 
-func InsertNewUser (user User) {
-	dbErr := user_cl.Insert(user)
-
-	if dbErr != nil {
-		panic(dbErr) // TODO panic should not be used.
-	}
+func InsertNewUser (user User) (dbErr error) {
+	dbErr = user_cl.Insert(user)
+	return
 }
 
 // userのsig確認
