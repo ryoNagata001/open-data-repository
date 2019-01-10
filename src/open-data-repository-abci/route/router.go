@@ -109,10 +109,11 @@ func (app *JSONStoreApplication) CheckTx(tx []byte) types.ResponseCheckTx {
 	publicKey := strings.ToUpper(util.ByteToHex(pubKeyBytes))
 	// ここでmongoに今のstateでuserが存在しているか確認している
 	count := domain.CheckExistenceOfUser(publicKey)
+	fmt.Println("【insert】1")
 	if body["type"] != "createUser" {
 
 		if count == 0 {
-			return types.ResponseCheckTx{Code: code.CodeTypeBadData}
+			return types.ResponseCheckTx{Code: code.CodeTypeUnauthorized}
 		}
 	} else {
 		if count != 0 {
@@ -122,6 +123,7 @@ func (app *JSONStoreApplication) CheckTx(tx []byte) types.ResponseCheckTx {
 	// ==== Does the userDao really exist? ======
 
 	// ===== Data Validation =======
+	fmt.Println("【insert】2")
 	codeType := RouteCheckTx(body, message)
 	// ===== Data Validation =======
 

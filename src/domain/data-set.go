@@ -1,23 +1,22 @@
 package domain
 
 import (
-	"google.golang.org/genproto/googleapis/type/date"
 	"gopkg.in/mgo.v2/bson"
 	"open-data-repository/src/infrastructure"
 )
 
 type DataSet struct {
 	ID 					bson.ObjectId 	`bson:"_id" json:"_id"`
-	Title				string			`bson: "title"`
+	Title				string			`bson: "title" json:"title"`
 	Publisher 			string			`bson: "publisher"`
-	ContactPoint		string			`bson: "contact_point"` 		// データの誤りを報告する連絡先
+	ContactPoint		string			`bson: "contactpoint"` 		// データの誤りを報告する連絡先
 	Creator 			string			`bson: "creator"`				// userのIDとひもづける
-	Tags 				[]string		`bson: "tags"`					// カンマ区切りのモノをsplitする
-	ReleaseDate 		date.Date 		`bson: "release_date"` 			// YYYY-MM-DD
-	FrequencyOfUpdate	string			`bson: "frequency_of_update"`	// dataの更新頻度
-	LandingPage			string 			`bson: "landing_page"`			// URL
+	Tags 				string			`bson: "tags"`					// カンマ区切りのモノをsplitする
+	ReleaseDate 		string 			`bson: "releasedate"` 			// YYYY-MM-DD
+	FrequencyOfUpdate	string			`bson: "frequencyofupdate"`	// dataの更新頻度
+	LandingPage			string 			`bson: "landingpage"`			// URL
 	Spatial 			string			`bson: "spatial"`				// データセットが対象としている都道府県名
-	DataResources		[]DataResource	`bson: "data_resources"`		// データリソースの中身
+	DataResources		[]DataResource	`bson: "dataresources"`		// データリソースの中身
 }
 
 var dataset_cl = infrastructure.SetCollection(infrastructure.DataSets.String())
@@ -31,5 +30,26 @@ func InsertNewDataSet(dataSet DataSet) (dbErr error) {
 // idで取得
 func GetDataSetById(id bson.ObjectId) (dataSet DataSet, err error) {
 	err = dataset_cl.FindId(id).One(&dataSet)
+	return
+}
+
+// idで取得
+func GetDataSetAll() (dataSet []DataSet, err error) {
+	err = dataset_cl.Find(nil).All(&dataSet)
+	return
+}
+
+func GetMyDataSet(publicKey string) (dataSet []DataSet, err error) {
+	err = dataset_cl.Find(bson.M{"creator": publicKey}).All(&dataSet)
+	return
+}
+
+func SearchDataSet(title string, publisher string, tags string, spatial string) (dataSet []DataSet, err error) {
+	err = dataset_cl.Find(bson.M{
+		"title": bson.RegEx{title, ""},
+		"publisher": bson.RegEx{ publisher, ""},
+		"tags": bson.RegEx{tags, ""},
+		"spatial": bson.RegEx{spatial, ""},
+	}).All(&dataSet)
 	return
 }

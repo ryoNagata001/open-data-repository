@@ -8,7 +8,7 @@ import (
 type User struct {
 	ID			bson.ObjectId		`bson: "_id" json: "_id"`
 	Name 		string				`bson: "name" json: "name"`
-	PublicKey	string				`bson: "public_key" json: "public_key"`
+	PublicKey	string				`bson: "publickey" json: "publickey"`
 }
 
 
@@ -22,12 +22,12 @@ func InsertNewUser (user User) (dbErr error) {
 
 // userのsig確認
 func CheckExistenceOfUser(publicKey string) (int) {
-	count, _ := user_cl.Find(bson.M{"publicKey": publicKey}).Count()
+	count, _ := user_cl.Find(bson.M{"publickey": publicKey}).Count()
 	return count
 }
 
-func GetUserByPubKey(publicKey string) (user User) {
-	user_cl.Find(bson.M{"publicKey": publicKey}).One(&user)
+func GetUserByPubKey(publicKey string) (user User, err error) {
+	err = user_cl.Find(bson.M{"publickey": publicKey}).One(&user)
 	return
 }
 

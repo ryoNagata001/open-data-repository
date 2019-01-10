@@ -3,7 +3,6 @@ package route
 import (
 	"encoding/base64"
 	"eventToken/utils"
-	"google.golang.org/genproto/googleapis/type/date"
 	"gopkg.in/mgo.v2/bson"
 	"open-data-repository/src/domain"
 	"open-data-repository/src/open-data-repository-abci/common/code"
@@ -71,25 +70,28 @@ func addDataSet(body map[string]interface{}, message map[string]interface{}) uin
 	publicKey := strings.ToUpper(utils.ByteToHex(pubKeyBytes))
 	dataSet.Creator = publicKey
 
-	dataSet.Tags = entity["tags"].([]string)
-	dataSet.ReleaseDate = entity["release_date"].(date.Date)
+	dataSet.Tags = entity["tags"].(string)
+	dataSet.ReleaseDate = entity["release_date"].(string)
 	dataSet.FrequencyOfUpdate = entity["frequency_of_update"].(string)
 	dataSet.LandingPage = entity["landing_page"].(string)
 	dataSet.Spatial = entity["spatial"].(string)
 
-	var DataResoueces = entity["data_resources"].([]map[string]interface{})
-	for i, value := range DataResoueces {
-		dataSet.DataResources[i].ID = bson.ObjectIdHex(value["id"].(string))
-		dataSet.DataResources[i].Title = value["title"].(string)
-		dataSet.DataResources[i].URL = value["url"].(string)
-		dataSet.DataResources[i].Description = value["description"].(string)
-		dataSet.DataResources[i].Format = value["format"].(string)
-		dataSet.DataResources[i].Value = value["value"].(string)
-		dataSet.DataResources[i].FileSize = value["file_size"].(int)
-		dataSet.DataResources[i].LastModifiedDate = value["last_modified_date"].(date.Date)
-		dataSet.DataResources[i].License = value["licence"].(string)
-		dataSet.DataResources[i].Copyright = value["copyright"].(string)
-		dataSet.DataResources[i].Language = value["language"].(string)
+	var DataResoueces = entity["data_resources"].([]interface{})
+	for _, value := range DataResoueces {
+		temp := value.(map[string]interface{})
+		var dataResource domain.DataResource
+		dataResource.ID = bson.ObjectIdHex(temp["id"].(string))
+		dataResource.Title = temp["title"].(string)
+		dataResource.URL = temp["url"].(string)
+		dataResource.Description = temp["description"].(string)
+		dataResource.Format = temp["format"].(string)
+		dataResource.Value = temp["value"].(string)
+		dataResource.FileSize = temp["file_size"].(string)
+		dataResource.LastModifiedDate = temp["last_modified_date"].(string)
+		dataResource.License = temp["license"].(string)
+		dataResource.Copyright = temp["copyright"].(string)
+		dataResource.Language = temp["language"].(string)
+		dataSet.DataResources = append(dataSet.DataResources, dataResource)
 	}
 
 	err := domain.InsertNewDataSet(dataSet)
@@ -119,8 +121,8 @@ func addDataResource(body map[string]interface{}, message map[string]interface{}
 		DataResource.Description = value["description"].(string)
 		DataResource.Format = value["format"].(string)
 		DataResource.Value = value["value"].(string)
-		DataResource.FileSize = value["FileSize"].(int)
-		DataResource.LastModifiedDate = value["last_modified_date"].(date.Date)
+		DataResource.FileSize = value["FileSize"].(string)
+		DataResource.LastModifiedDate = value["last_modified_date"].(string)
 		DataResource.License = value["licence"].(string)
 		DataResource.Copyright = value["copyright"].(string)
 		DataResource.Language = value["language"].(string)
