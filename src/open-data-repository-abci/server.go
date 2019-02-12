@@ -1,12 +1,12 @@
 package main
 
 import (
-	"open-data-repository/src/open-data-repository-abci/route"
-	"os"
 	"github.com/tendermint/tendermint/abci/server"
 	"github.com/tendermint/tendermint/abci/types"
 	cmn "github.com/tendermint/tendermint/libs/common"
 	"github.com/tendermint/tendermint/libs/log"
+	"open-data-repository/src/open-data-repository-abci/route"
+	"os"
 )
 
 func main() {
@@ -14,6 +14,7 @@ func main() {
 }
 
 func initApp() error {
+
 	logger := log.NewTMLogger(log.NewSyncWriter(os.Stdout))
 
 	// Create the application

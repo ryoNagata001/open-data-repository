@@ -53,3 +53,13 @@ func SearchDataSet(title string, publisher string, tags string, spatial string) 
 	}).All(&dataSet)
 	return
 }
+
+func GetDataSetList(page int, perPage int) (dataSet []DataSet, err error) {
+	err = dataset_cl.Find(nil).Skip((page-1) * perPage).Limit(perPage).All(&dataSet)
+	return
+}
+
+func GetCollectionCount() (count int, err error) {
+	count, err = dataset_cl.Count()
+	return
+}

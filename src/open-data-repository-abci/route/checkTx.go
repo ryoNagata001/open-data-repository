@@ -163,7 +163,7 @@ func checkDataResource(rowDataResource map[string]interface{}) (codeType uint32)
 		return
 	}
 
-	if (rowDataResource["file_size"] == nil) || (strings.TrimSpace(rowDataResource["file_size"].(string)) == "") {
+	if rowDataResource["file_size"] == nil {
 		codeType = code.CodeTypeBadData
 		fmt.Println("resource, publisher")
 		return

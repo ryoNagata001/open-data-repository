@@ -11,7 +11,7 @@ type DataResource struct {
 	Description 		string			`bson: "description"`
 	Format 				string			`bson: "format"`				// 拡張子を設定する(ValueはBASE64で保持する)
 	Value 				string			`bson: "value"`					// dataの中身をbase64にする
-	FileSize			string 			`bson: "filesize"`				// byte
+	FileSize			float64			`bson: "filesize"`				// byte
 	LastModifiedDate 	string 			`bson: "lastmodifieddate"`	// リソースの掲載日を YYYY-MM-DDののフォーマットで記入する
 	License				string			`bson: "licence"`				// 択一選択
 	Copyright			string			`bson: "copyright"`				// 固定文字列

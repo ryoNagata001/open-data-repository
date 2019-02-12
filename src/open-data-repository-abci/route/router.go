@@ -109,7 +109,6 @@ func (app *JSONStoreApplication) CheckTx(tx []byte) types.ResponseCheckTx {
 	publicKey := strings.ToUpper(util.ByteToHex(pubKeyBytes))
 	// ここでmongoに今のstateでuserが存在しているか確認している
 	count := domain.CheckExistenceOfUser(publicKey)
-	fmt.Println("【insert】1")
 	if body["type"] != "createUser" {
 
 		if count == 0 {
@@ -123,7 +122,6 @@ func (app *JSONStoreApplication) CheckTx(tx []byte) types.ResponseCheckTx {
 	// ==== Does the userDao really exist? ======
 
 	// ===== Data Validation =======
-	fmt.Println("【insert】2")
 	codeType := RouteCheckTx(body, message)
 	// ===== Data Validation =======
 
@@ -158,6 +156,7 @@ func (app *JSONStoreApplication) BeginBlock(req types.RequestBeginBlock) (res ty
 	//fmt.Println("....BlockHeight => ", req.Header.Height)
 	//app.state.LastBlockHeight = req.Header.Height
 	// TODO get Validator address
+	fmt.Println("\n【BeginBlock】", res.String())
 	return
 }
 
@@ -170,6 +169,6 @@ func (app *JSONStoreApplication) EndBlock(req types.RequestEndBlock) (res types.
 	//	// stateを削除する
 	//	app.state.ValidatorUpdates = []types.ValidatorUpdate{}
 	//}
-	fmt.Println("【EndBlock】", res.String())
+	fmt.Println("【EndBlock】\n", res.String())
 	return
 }
