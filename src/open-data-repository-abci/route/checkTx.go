@@ -66,37 +66,37 @@ func checkTxAddDataSet(body map[string]interface{}) (codeType uint32) {
 
 	if (entity["contact_point"] == nil) || (strings.TrimSpace(entity["contact_point"].(string)) == "") {
 		codeType = code.CodeTypeBadData
-		fmt.Println("set, publisher")
+		fmt.Println("set, contact_point")
 		return
 	}
 
 	if (entity["tags"] == nil) || (strings.TrimSpace(entity["tags"].(string)) == "") {
 		codeType = code.CodeTypeBadData
-		fmt.Println("set, publisher")
+		fmt.Println("set, tags")
 		return
 	}
 
 	if entity["release_date"] == nil {
 		codeType = code.CodeTypeBadData
-		fmt.Println("set, publisher")
+		fmt.Println("set, release_date")
 		return
 	}
 
 	if (entity["frequency_of_update"] == nil) || (strings.TrimSpace(entity["frequency_of_update"].(string)) == "") {
 		codeType = code.CodeTypeBadData
-		fmt.Println("set, publisher")
+		fmt.Println("set, frequency_of_update")
 		return
 	}
 
 	if (entity["landing_page"] == nil) || (strings.TrimSpace(entity["landing_page"].(string)) == "") {
 		codeType = code.CodeTypeBadData
-		fmt.Println("set, publisher")
+		fmt.Println("set, landing_page")
 		return
 	}
 
 	if (entity["spatial"] == nil) || (strings.TrimSpace(entity["spatial"].(string)) == "") {
 		codeType = code.CodeTypeBadData
-		fmt.Println("set, publisher")
+		fmt.Println("set, spatial")
 		return
 	}
 
