@@ -2,10 +2,10 @@ package route
 
 import (
 	"encoding/base64"
-	"eventToken/utils"
 	"gopkg.in/mgo.v2/bson"
 	"open-data-repository/src/domain"
 	"open-data-repository/src/open-data-repository-abci/common/code"
+	"open-data-repository/src/open-data-repository-abci/common/util"
 	"strings"
 )
 
@@ -42,7 +42,7 @@ func createUser(body map[string]interface{}, message map[string]interface{}) uin
 	}
 
 	// public keyを取得
-	publicKey := strings.ToUpper(utils.ByteToHex(pubKeyBytes))
+	publicKey := strings.ToUpper(util.ByteToHex(pubKeyBytes))
 	user.PublicKey = publicKey
 
 	// dataのinsert
@@ -67,7 +67,7 @@ func addDataSet(body map[string]interface{}, message map[string]interface{}) uin
 	if errDecode != nil {
 		return code.CodeTypeBadData
 	}
-	publicKey := strings.ToUpper(utils.ByteToHex(pubKeyBytes))
+	publicKey := strings.ToUpper(util.ByteToHex(pubKeyBytes))
 	dataSet.Creator = publicKey
 
 	dataSet.Tags = entity["tags"].(string)
