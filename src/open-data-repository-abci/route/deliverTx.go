@@ -22,6 +22,12 @@ func RouteDeliverTx(body map[string]interface{}, message map[string]interface{})
 	case "addDataResource":
 		code = addDataResource(body, message)
 		break
+	case "deleteDataSet":
+		code = deleteDataSet(body, message)
+		break
+	case "editDataSet":
+		code = editDataSet(body, message)
+
 	}
 
 	return code
@@ -102,6 +108,76 @@ func addDataSet(body map[string]interface{}, message map[string]interface{}) uin
 	return code.CodeTypeOK
 }
 
+func editDataSet(body map[string]interface{}, message map[string]interface{}) uint32 {
+	entity := body["entity"].(map[string]interface{})
+
+	// data set instanceを作る
+	var dataSet domain.DataSet
+	dataSet.ID = bson.ObjectIdHex(entity["id"].(string))
+
+	// data set instanceを取得
+	var dataSetTemp, err = domain.GetDataSetById(bson.ObjectIdHex(entity["id"].(string)))
+
+	// データセットが存在しない場合
+	if err != nil {
+		return code.CodeTypeBadData
+	}
+
+	pubKeyBytes, errDecode := base64.StdEncoding.DecodeString(message["publicKey"].(string))
+
+	if errDecode != nil {
+		return code.CodeTypeBadData
+	}
+
+	// public keyを取得
+	publicKey := strings.ToUpper(util.ByteToHex(pubKeyBytes))
+
+	// リクエストユーザーに権限がが存在しなかった場合
+	if publicKey != dataSetTemp.Creator {
+		return code.CodeTypeUnauthorized
+	}
+
+	dataSet.Title = entity["title"].(string)
+	dataSet.Publisher = entity["publisher"].(string)
+	dataSet.ContactPoint = entity["contact_point"].(string)
+	dataSet.Creator = publicKey
+
+	dataSet.Tags = entity["tags"].(string)
+	dataSet.ReleaseDate = entity["release_date"].(string)
+	dataSet.FrequencyOfUpdate = entity["frequency_of_update"].(string)
+	dataSet.LandingPage = entity["landing_page"].(string)
+	dataSet.Spatial = entity["spatial"].(string)
+
+	var DataResoueces = entity["data_resources"].([]interface{})
+	for _, value := range DataResoueces {
+		temp := value.(map[string]interface{})
+		var dataResource domain.DataResource
+		dataResource.ID = bson.ObjectIdHex(temp["id"].(string))
+		dataResource.Title = temp["title"].(string)
+		dataResource.URL = temp["url"].(string)
+		dataResource.Description = temp["description"].(string)
+		dataResource.Format = temp["format"].(string)
+		dataResource.Value = temp["value"].(string)
+		dataResource.FileSize = temp["file_size"].(float64)
+		dataResource.LastModifiedDate = temp["last_modified_date"].(string)
+		dataResource.License = temp["license"].(string)
+		dataResource.Copyright = temp["copyright"].(string)
+		dataResource.Language = temp["language"].(string)
+		dataSet.DataResources = append(dataSet.DataResources, dataResource)
+	}
+
+	err = domain.DeleteDataSet(bson.ObjectIdHex(entity["id"].(string)))
+	if err != nil {
+		return code.CodeTypeBadData
+	}
+	err = domain.InsertNewDataSet(dataSet)
+	if err != nil {
+		return code.CodeTypeBadData
+	}
+
+	return code.CodeTypeOK
+}
+
 func addDataResource(body map[string]interface{}, message map[string]interface{}) uint32 {
 	entity := body["entity"].(map[string]interface{})
 
@@ -132,6 +208,41 @@ func addDataResource(body map[string]interface{}, message map[string]interface{}
 
 	errDb := domain.InsertNewDataSet(dataSet)
 	if errDb != nil {
+		return code.CodeTypeBadData
+	}
+
+	return code.CodeTypeOK
+
+}
+
+func deleteDataSet(body map[string]interface{}, message map[string]interface{}) uint32 {
+	entity := body["entity"].(map[string]interface{})
+
+	// data set instanceを取得
+	var dataSet, err = domain.GetDataSetById(bson.ObjectIdHex(entity["id"].(string)))
+
+	// データセットが存在しない場合
+	if err != nil {
+		return code.CodeTypeBadData
+	}
+
+	pubKeyBytes, errDecode := base64.StdEncoding.DecodeString(message["publicKey"].(string))
+
+	if errDecode != nil {
+		return code.CodeTypeBadData
+	}
+
+	// public keyを取得
+	publicKey := strings.ToUpper(util.ByteToHex(pubKeyBytes))
+
+	// リクエストユーザーに権限がが存在しなかった場合
+	if publicKey != dataSet.Creator {
+		return code.CodeTypeUnauthorized
+	}
+
+	// データセットのMongoからの削除
+	err = domain.DeleteDataSet(bson.ObjectIdHex(entity["id"].(string)))
+	if err != nil {
 		return code.CodeTypeBadData
 	}
 

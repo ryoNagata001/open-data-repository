@@ -63,3 +63,8 @@ func GetCollectionCount() (count int, err error) {
 	count, err = dataset_cl.Count()
 	return
 }
+
+func DeleteDataSet(id bson.ObjectId) (err error) {
+	err = dataset_cl.RemoveId(id)
+	return
+}

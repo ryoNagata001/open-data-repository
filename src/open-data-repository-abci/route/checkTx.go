@@ -20,6 +20,11 @@ func RouteCheckTx(body map[string]interface{}, message map[string]interface{}) u
 	case "addDataResource":
 		code = checkTxAddDataResource(body)
 		break
+	case "deleteDataSet":
+		code = checkTxDeleteDataSet(body)
+		break
+	case "editDataSet":
+		code = checkTxAddDataSet(body)
 	}
 
 	return code
@@ -193,5 +198,15 @@ func checkDataResource(rowDataResource map[string]interface{}) (codeType uint32)
 		return
 	}
 
+	return code.CodeTypeOK
+}
+
+func checkTxDeleteDataSet(body map[string]interface{}) (codeType uint32){
+
+	entity := body["entity"].(map[string]interface{})
+	if (entity["id"] == nil) || (bson.IsObjectIdHex(entity["id"].(string)) != true) {
+		codeType = code.CodeTypeBadData
+		return
+	}
 	return code.CodeTypeOK
 }
