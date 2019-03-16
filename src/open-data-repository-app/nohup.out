@@ -1,0 +1,239 @@
+
+
+
+
+2019/02/13 23:34:08 http: panic serving 124.219.136.214:61168: runtime error: invalid memory address or nil pointer dereference
+goroutine 19340 [running]:
+net/http.(*conn).serve.func1(0xc4200848c0)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc420108540, 0xc420106200)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc420108540, 0xc420106200)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc420108540, 0xc420106200)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc420108540, 0xc420107300)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc420108540, 0xc420107300)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc4200848c0, 0x7854a0, 0xc42005c740)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+2019/02/13 23:34:08 http: panic serving 124.219.136.214:61169: runtime error: invalid memory address or nil pointer dereference
+goroutine 19361 [running]:
+net/http.(*conn).serve.func1(0xc4200846e0)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc4201087e0, 0xc420106600)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc4201087e0, 0xc420106600)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc4201087e0, 0xc420106600)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc4201087e0, 0xc420106400)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc4201087e0, 0xc420106400)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc4200846e0, 0x7854a0, 0xc42005c8c0)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+2019/02/13 23:34:13 http: panic serving 124.219.136.214:61170: runtime error: invalid memory address or nil pointer dereference
+goroutine 19363 [running]:
+net/http.(*conn).serve.func1(0xc420084960)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc420108c40, 0xc420106a00)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc420108c40, 0xc420106a00)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc420108c40, 0xc420106a00)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc420108c40, 0xc420106800)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc420108c40, 0xc420106800)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc420084960, 0x7854a0, 0xc42005c9c0)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+
+
+
+2019/02/14 08:07:27 http: panic serving 49.106.192.22:61778: runtime error: invalid memory address or nil pointer dereference
+goroutine 24462 [running]:
+net/http.(*conn).serve.func1(0xc420084aa0)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc420108ee0, 0xc420107100)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc420108ee0, 0xc420107100)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc420108ee0, 0xc420107100)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc420108ee0, 0xc420106f00)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc420108ee0, 0xc420106f00)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc420084aa0, 0x7854a0, 0xc42005cec0)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+2019/02/14 08:07:27 http: panic serving 49.106.192.22:61784: runtime error: invalid memory address or nil pointer dereference
+goroutine 24468 [running]:
+net/http.(*conn).serve.func1(0xc4200840a0)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc4201090a0, 0xc420107500)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc4201090a0, 0xc420107500)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc4201090a0, 0xc420107500)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc4201090a0, 0xc420107300)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc4201090a0, 0xc420107300)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc4200840a0, 0x7854a0, 0xc42005c800)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+2019/02/14 08:07:27 http: panic serving 49.106.192.22:37313: runtime error: invalid memory address or nil pointer dereference
+goroutine 24470 [running]:
+net/http.(*conn).serve.func1(0xc4200846e0)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc4201095e0, 0xc420107900)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc4201095e0, 0xc420107900)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc4201095e0, 0xc420107900)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc4201095e0, 0xc420107700)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc4201095e0, 0xc420107700)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc4200846e0, 0x7854a0, 0xc42005c9c0)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+2019/02/14 08:07:27 http: panic serving 49.106.192.22:61786: runtime error: invalid memory address or nil pointer dereference
+goroutine 24472 [running]:
+net/http.(*conn).serve.func1(0xc4200848c0)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc4201097a0, 0xc420107d00)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc4201097a0, 0xc420107d00)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc4201097a0, 0xc420107d00)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc4201097a0, 0xc420107b00)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc4201097a0, 0xc420107b00)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc4200848c0, 0x7854a0, 0xc42005d000)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+
+札幌
+
+
+
+
+
+札幌
+
+
+2019/02/21 12:27:24 http: panic serving 39.110.201.153:62249: runtime error: invalid memory address or nil pointer dereference
+goroutine 126265 [running]:
+net/http.(*conn).serve.func1(0xc4200848c0)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc420108ee0, 0xc420106700)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc420108ee0, 0xc420106700)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc420108ee0, 0xc420106700)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc420108ee0, 0xc420106500)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc420108ee0, 0xc420106500)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc4200848c0, 0x7854a0, 0xc42005c800)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+2019/02/21 12:27:24 http: panic serving 39.110.201.153:62250: runtime error: invalid memory address or nil pointer dereference
+goroutine 126268 [running]:
+net/http.(*conn).serve.func1(0xc420084960)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc4201090a0, 0xc420106c00)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc4201090a0, 0xc420106c00)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc4201090a0, 0xc420106c00)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc4201090a0, 0xc420106900)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc4201090a0, 0xc420106900)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc420084960, 0x7854a0, 0xc42005ce40)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+2019/02/21 12:27:24 http: panic serving 39.110.201.153:62251: runtime error: invalid memory address or nil pointer dereference
+goroutine 126270 [running]:
+net/http.(*conn).serve.func1(0xc420084aa0)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc420109500, 0xc420107000)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc420109500, 0xc420107000)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc420109500, 0xc420107000)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc420109500, 0xc420106e00)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc420109500, 0xc420106e00)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc420084aa0, 0x7854a0, 0xc42005cf40)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+2019/02/21 12:27:24 http: panic serving 39.110.201.153:62252: runtime error: invalid memory address or nil pointer dereference
+goroutine 126272 [running]:
+net/http.(*conn).serve.func1(0xc420084be0)
+	/usr/lib/golang/src/net/http/server.go:1726 +0xd0
+panic(0x6e4f20, 0x8edb30)
+	/usr/lib/golang/src/runtime/panic.go:502 +0x229
+main.FindUserName(0x785120, 0xc4201096c0, 0xc420107400)
+	/home/ec2-user/go/src/open-data-repository/src/open-data-repository-app/server.go:76 +0x152
+net/http.HandlerFunc.ServeHTTP(0x75c550, 0x785120, 0xc4201096c0, 0xc420107400)
+	/usr/lib/golang/src/net/http/server.go:1947 +0x44
+open-data-repository/vendor/github.com/gorilla/mux.(*Router).ServeHTTP(0xc420136a80, 0x785120, 0xc4201096c0, 0xc420107400)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/mux/mux.go:162 +0xed
+open-data-repository/vendor/github.com/gorilla/handlers.(*cors).ServeHTTP(0xc420138480, 0x785120, 0xc4201096c0, 0xc420107200)
+	/home/ec2-user/go/src/open-data-repository/vendor/github.com/gorilla/handlers/cors.go:135 +0x20f
+net/http.serverHandler.ServeHTTP(0xc42007d930, 0x785120, 0xc4201096c0, 0xc420107200)
+	/usr/lib/golang/src/net/http/server.go:2697 +0xbc
+net/http.(*conn).serve(0xc420084be0, 0x7854a0, 0xc42005d080)
+	/usr/lib/golang/src/net/http/server.go:1830 +0x651
+created by net/http.(*Server).Serve
+	/usr/lib/golang/src/net/http/server.go:2798 +0x27b
+
+
