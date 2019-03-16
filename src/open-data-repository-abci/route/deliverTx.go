@@ -89,7 +89,9 @@ func addDataSet(body map[string]interface{}, message map[string]interface{}) uin
 		dataResource.ID = bson.ObjectIdHex(temp["id"].(string))
 		dataResource.Title = temp["title"].(string)
 		dataResource.URL = temp["url"].(string)
-		dataResource.Description = temp["description"].(string)
+		if !(temp["description"] == nil) {
+			dataResource.Description = temp["description"].(string)
+		}
 		dataResource.Format = temp["format"].(string)
 		dataResource.Value = temp["value"].(string)
 		dataResource.FileSize = temp["file_size"].(float64)
